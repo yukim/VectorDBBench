@@ -40,6 +40,7 @@ DB_TO_ICON = {
     DB.QdrantCloud: "https://assets.zilliz.com/qdrant_b691674fcd.png",
     DB.WeaviateCloud: "https://assets.zilliz.com/weaviate_4f6f171ebe.png",
     DB.PgVector: "https://assets.zilliz.com/milvus_c30b0d1994.png",
+    DB.AstraDB: "https://awesome-astra.github.io/docs/img/favicon.ico" # TODO: replace with official icon
 }
 
 
