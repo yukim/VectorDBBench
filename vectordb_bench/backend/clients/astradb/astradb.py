@@ -111,11 +111,12 @@ class AstraDB(VectorDB):
         filters: dict | None = None,
     ) -> list[int]:
         # filtering search not supported yet
-        from cassandra.concurrent import execute_concurrent
+        from cassandra import ConsistencyLevel
 
-        results = execute_concurrent(self.session, (self._select, (query, k)), concurrency=16, raise_on_first_error=True)
-        successful_results = filter(lambda result: result.success, results)
-        return [row.id for result in successful_results for row in result[1]]
+        statement = self._select.bind([query, k])
+        statement.consistency_level = ConsistencyLevel.LOCAL_ONE
+        results = self.session.execute(statement)
+        return [row.id for row in results]
 
     def optimize(self):
         pass
